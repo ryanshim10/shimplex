@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shimplex - Personal AI Plex</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Shimplex</h1>
+            <p class="subtitle">Personal AI Plex - Pinehill Manager 연동</p>
+        </header>
+        
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="chat">💬 채팅</button>
+            <button class="tab-btn" data-tab="units">🏢 세대현황</button>
+            <button class="tab-btn" data-tab="summary">📊 요약</button>
+            <button class="tab-btn" data-tab="settings">⚙️ 설정</button>
+        </nav>
+        
+        <!-- 채팅 탭 -->
+        <section id="chat" class="tab-content active">
+            <div class="chat-container">
+                <div id="chat-messages" class="chat-messages">
+                    <div class="message system">
+                        👋 안녕하세요! Shimplex AI 어시스턴트입니다.<br>
+                        Pinehill Manager 데이터를 분석하고 질문에 답변해드립니다.
+                    </div>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="message-input" placeholder="메시지를 입력하세요..." autocomplete="off">
+                    <button id="send-btn">전송</button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 세대현황 탭 -->
+        <section id="units" class="tab-content">
+            <div class="section-header">
+                <h2>🏢 세대 현황</h2>
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">전체</button>
+                    <button class="filter-btn" data-filter="RENTED">임대중</button>
+                    <button class="filter-btn" data-filter="MAINTENANCE">정비중</button>
+                    <button class="filter-btn" data-filter="LAWSUIT">소송</button>
+                </div>
+            </div>
+            <div id="units-list" class="units-grid">
+                <div class="loading">로딩 중...</div>
+            </div>
+        </section>
+        
+        <!-- 요약 탭 -->
+        <section id="summary" class="tab-content">
+            <div class="section-header">
+                <h2>📊 월별 요약</h2>
+                <input type="month" id="summary-month" class="month-picker">
+            </div>
+            <div id="summary-content">
+                <div class="loading">로딩 중...</div>
+            </div>
+        </section>
+        
+        <!-- 설정 탭 -->
+        <section id="settings" class="tab-content">
+            <h2>⚙️ LLM 설정</h2>
+            <form id="settings-form">
+                <div class="form-group">
+                    <label>LLM 제공자</label>
+                    <select id="llm-provider" name="provider">
+                        <option value="openai">OpenAI</option>
+                        <option value="anthropic">Anthropic (Claude)</option>
+                        <option value="ollama">Ollama (로컬)</option>
+                        <option value="custom">커스텀 API</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>API 키</label>
+                    <input type="password" id="llm-api-key" name="api_key" placeholder="sk-...">
+                    <small>OpenAI/Claude 키. Ollama는 비워두세요.</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>모델 이름</label>
+                    <input type="text" id="llm-model" name="model" placeholder="gpt-4o-mini">
+                    <small>예: gpt-4o-mini, claude-3-haiku, llama3.1:8b</small>
+                </div>
+                
+                <div class="form-group ollama-only" style="display:none;">
+                    <label>Ollama URL</label>
+                    <input type="text" id="llm-base-url" name="base_url" placeholder="http://localhost:11434">
+                </div>
+                
+                <div class="form-group custom-only" style="display:none;">
+                    <label>API Base URL</label>
+                    <input type="text" id="llm-custom-url" name="base_url" placeholder="https://api.example.com">
+                </div>
+                
+                <button type="submit" class="btn-primary">설정 저장</button>
+            </form>
+            
+            <div class="settings-info">
+                <h3>📋 상태</h3>
+                <div id="health-status">확인 중...</div>
+            </div>
+        </section>
+    </div>
+    
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
