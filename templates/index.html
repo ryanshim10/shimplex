@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shimplex - Personal AI Plex</title>
+    <title>Shimplex Lite - Personal AI</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🧠 Shimplex</h1>
-            <p class="subtitle">Personal AI Plex - Pinehill Manager 연동</p>
+            <h1>🧠 Shimplex Lite</h1>
+            <p class="subtitle">Personal AI Client - 외부 LLM 연결</p>
         </header>
         
         <nav class="tabs">
             <button class="tab-btn active" data-tab="chat">💬 채팅</button>
-            <button class="tab-btn" data-tab="units">🏢 세대현황</button>
-            <button class="tab-btn" data-tab="summary">📊 요약</button>
             <button class="tab-btn" data-tab="settings">⚙️ 설정</button>
         </nav>
         
@@ -25,41 +23,15 @@
             <div class="chat-container">
                 <div id="chat-messages" class="chat-messages">
                     <div class="message system">
-                        👋 안녕하세요! Shimplex AI 어시스턴트입니다.<br>
-                        Pinehill Manager 데이터를 분석하고 질문에 답변해드립니다.
+                        👋 안녕하세요! Shimplex AI입니다.<br>
+                        외부 LLM(OpenAI/Claude/Ollama)에 연결하여 사용하세요.
                     </div>
                 </div>
                 <div class="chat-input">
                     <input type="text" id="message-input" placeholder="메시지를 입력하세요..." autocomplete="off">
                     <button id="send-btn">전송</button>
+                    <button id="clear-btn" class="btn-secondary" title="대화 초기화">🗑️</button>
                 </div>
-            </div>
-        </section>
-        
-        <!-- 세대현황 탭 -->
-        <section id="units" class="tab-content">
-            <div class="section-header">
-                <h2>🏢 세대 현황</h2>
-                <div class="filters">
-                    <button class="filter-btn active" data-filter="all">전체</button>
-                    <button class="filter-btn" data-filter="RENTED">임대중</button>
-                    <button class="filter-btn" data-filter="MAINTENANCE">정비중</button>
-                    <button class="filter-btn" data-filter="LAWSUIT">소송</button>
-                </div>
-            </div>
-            <div id="units-list" class="units-grid">
-                <div class="loading">로딩 중...</div>
-            </div>
-        </section>
-        
-        <!-- 요약 탭 -->
-        <section id="summary" class="tab-content">
-            <div class="section-header">
-                <h2>📊 월별 요약</h2>
-                <input type="month" id="summary-month" class="month-picker">
-            </div>
-            <div id="summary-content">
-                <div class="loading">로딩 중...</div>
             </div>
         </section>
         
@@ -105,6 +77,25 @@
             <div class="settings-info">
                 <h3>📋 상태</h3>
                 <div id="health-status">확인 중...</div>
+            </div>
+            
+            <div class="help-section">
+                <h3>❓ 도움말</h3>
+                <div class="help-item">
+                    <strong>OpenAI</strong>
+                    <p>API 키: https://platform.openai.com/api-keys</p>
+                    <p>모델: gpt-4o-mini, gpt-4, gpt-3.5-turbo</p>
+                </div>
+                <div class="help-item">
+                    <strong>Anthropic (Claude)</strong>
+                    <p>API 키: https://console.anthropic.com</p>
+                    <p>모델: claude-3-haiku, claude-3-sonnet, claude-3-opus</p>
+                </div>
+                <div class="help-item">
+                    <strong>Ollama (로컬)</strong>
+                    <p>설치: https://ollama.com</p>
+                    <p>모델: llama3.1, mistral, gemma 등</p>
+                </div>
             </div>
         </section>
     </div>
